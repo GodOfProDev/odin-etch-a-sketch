@@ -31,12 +31,20 @@ function calculateBoxSize(gridSize) {
 
 boxContainer.addEventListener("mouseover", (e) => {
     if (e.target.classList.contains("box")) {
+        let r = getRandomInt(256)
+        let g = getRandomInt(256)
+        let b = getRandomInt(256)
+        //e.target.style.backgroundColor = `rgb(${r}, ${g}, ${b}, 1)`;
         e.target.style.backgroundColor = "white"
     }
 })
 
 const row = document.createElement("div")
 row.classList.add("flex")
+
+function getRandomInt(max) {
+    return Math.round(Math.random() * (max + 1))
+}
 
 function generateGrid(size) {
     let fragment = new DocumentFragment()

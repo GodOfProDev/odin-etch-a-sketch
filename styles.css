@@ -21,12 +21,14 @@ body {
 
 .box {
     background-color: var(--blue);
+    transition: background-color 250ms linear
 }
 
 .flex {
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 .box-container {
