@@ -35,7 +35,7 @@ boxContainer.addEventListener("mouseover", (e) => {
         let g = getRandomInt(256)
         let b = getRandomInt(256)
         //e.target.style.backgroundColor = `rgb(${r}, ${g}, ${b}, 1)`;
-        e.target.style.backgroundColor = "white"
+        e.target.style.backgroundColor = "black"
     }
 })
 

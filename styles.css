@@ -19,8 +19,12 @@ body {
     background-color: var(--dark-blue);
 }
 
+label {
+    color: var(--white)
+}
+
 .box {
-    background-color: var(--blue);
+    background-color: var(--white);
     transition: background-color 250ms linear
 }
 
@@ -31,9 +35,21 @@ body {
 
 }
 
+body {
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    color: var(--white);
+    text-align: center;
+    margin: 50px;
+}
+
 .box-container {
     width: 512px;
     height: 512px;
+
+    border: 5px solid var(--blue);
 }
 
 .container {
@@ -41,4 +57,19 @@ body {
 
     justify-content: center;
     align-items: center;
+}
+
+.grid-size-btn {
+    width: 150px;
+    height: 70px;
+
+    margin: 50px;
+
+    border-radius: 15px;
+
+    background-color: var(--blue);
+    color: var(--white);
+
+    font-size: 18px;
+    font-weight: bold;
 }
