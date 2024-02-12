@@ -10,8 +10,14 @@
     <div class="root">
         <h1 class="header">Etch A Sketch</h1>
         <div class="container">
-            <label for="colorpicker">Select the color</label>
-            <input id="colorpicker" name="colorpicker" type="color">
+            <div class="color-picker-div flex-column">
+                <label for="color-picker" id="color-picker-label">Select the color of your brush</label>
+                <input type="color" id="color-picker">
+                <label for="rgb-brush" id="rgb-brush-label">RGB Brush: </label>
+                <input type="checkbox" id="rgb-brush">
+                <button class="eraser-board">Erase the board</button>
+                <button class="party-btn">Party Mode</button>
+            </div>
             <div class="box-container"></div>
         </div>
         <div class="flex">

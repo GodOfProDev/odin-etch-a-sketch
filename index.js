@@ -1,5 +1,35 @@
 const boxContainer = document.querySelector(".box-container")
 const gridSizeBtn = document.querySelector(".grid-size-btn")
+const colorPicker = document.querySelector("#color-picker");
+const rgbBrush = document.querySelector("#rgb-brush")
+const eraseTheBoard = document.querySelector(".eraser-board")
+const partyBtn = document.querySelector(".party-btn")
+
+let gridSize = 16;
+
+let isParty = false;
+let partyId = -1;
+
+partyBtn.addEventListener("click", () => {
+    isParty = !isParty
+
+    if (isParty) {
+        partyId = setInterval(function () {
+            let boxes = document.querySelectorAll(".box")
+
+            boxes.forEach((box) => {
+                let r = getRandomInt(256)
+                let g = getRandomInt(256)
+                let b = getRandomInt(256)
+                box.style.backgroundColor = `rgb(${r}, ${g}, ${b}, 1)`;
+            })
+        }, 250)
+    } else {
+        if (partyId !== -1) {
+            clearInterval(partyId)
+        }
+    }
+})
 
 gridSizeBtn.addEventListener("click", () => {
     let promptValue = prompt("Enter the grid size")
@@ -16,7 +46,9 @@ gridSizeBtn.addEventListener("click", () => {
         return;
     }
 
-    generateGrid(size)
+    gridSize = size
+
+    generateGrid(gridSize)
 })
 
 const box = document.createElement("div")
@@ -25,17 +57,39 @@ box.classList.add("box")
 box.style.width = calculateBoxSize(16)
 box.style.height = calculateBoxSize(16)
 
+eraseTheBoard.addEventListener("click", () => {
+    generateGrid(gridSize)
+})
+
+
+
 function calculateBoxSize(gridSize) {
     return Math.round((512 / gridSize) * 10) / 10;
 }
+
+let isRgbBrush = false;
+
+rgbBrush.addEventListener("input", function () {
+    isRgbBrush = this.checked
+});
+
+let brushColor = "black"
+
+colorPicker.addEventListener("input", (e) => {
+    brushColor = colorPicker.value
+})
 
 boxContainer.addEventListener("mouseover", (e) => {
     if (e.target.classList.contains("box")) {
         let r = getRandomInt(256)
         let g = getRandomInt(256)
         let b = getRandomInt(256)
-        //e.target.style.backgroundColor = `rgb(${r}, ${g}, ${b}, 1)`;
-        e.target.style.backgroundColor = "black"
+
+        if (isRgbBrush) {
+            e.target.style.backgroundColor = `rgb(${r}, ${g}, ${b}, 1)`;
+        } else {
+            e.target.style.backgroundColor = brushColor
+        }
     }
 })
 
@@ -55,8 +109,6 @@ function generateGrid(size) {
     boxToClone.style.width = `${calculateBoxSize(size)}px`
     boxToClone.style.height = `${calculateBoxSize(size)}px`
 
-    console.log(calculateBoxSize(size))
-
     for (let i = 0; i < size; i++) {
         let newNode = row.cloneNode()
         for (let j = 0; j < size; j++) {
@@ -74,4 +126,4 @@ function deleteAllChildren(node) {
     }
 }
 
-generateGrid(16);
+generateGrid(gridSize);
