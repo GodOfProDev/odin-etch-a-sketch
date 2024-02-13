@@ -97,6 +97,14 @@ boxContainer.addEventListener("mousedown", (e) => {
     }
 })
 
+document.body.addEventListener("dragstart", (e) => {
+    e.preventDefault();
+})
+
+document.body.addEventListener("drop", (e) => {
+    e.preventDefault()
+})
+
 document.addEventListener("mouseup", (e) => {
     mouseDown = false;
 })
