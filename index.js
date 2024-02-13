@@ -79,8 +79,30 @@ colorPicker.addEventListener("input", (e) => {
     brushColor = colorPicker.value
 })
 
-boxContainer.addEventListener("mouseover", (e) => {
+let mouseDown = false;
+
+boxContainer.addEventListener("mousedown", (e) => {
     if (e.target.classList.contains("box")) {
+        let r = getRandomInt(256)
+        let g = getRandomInt(256)
+        let b = getRandomInt(256)
+
+        if (isRgbBrush) {
+            e.target.style.backgroundColor = `rgb(${r}, ${g}, ${b}, 1)`;
+        } else {
+            e.target.style.backgroundColor = brushColor
+        }
+
+        mouseDown = true;
+    }
+})
+
+document.addEventListener("mouseup", (e) => {
+    mouseDown = false;
+})
+
+boxContainer.addEventListener("mouseover", (e) => {
+    if (e.target.classList.contains("box") && mouseDown) {
         let r = getRandomInt(256)
         let g = getRandomInt(256)
         let b = getRandomInt(256)
